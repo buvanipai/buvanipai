@@ -35,8 +35,8 @@
 
 <div align="center"> 
   
-  <a href="https://github.com/buvanipai/portfolio">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=buvanipai&repo=portfolio&theme=gotham&hide_border=true" />
+  <a href="https://github.com/buvanipai/buvanipai">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=buvanipai&repo=buvanipai&theme=gotham&hide_border=true" />
   </a>
   <a href="https://github.com/buvanipai/crm-entity-resolver">
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=buvanipai&repo=crm-entity-resolver&theme=gotham&hide_border=true" />
@@ -56,13 +56,4 @@
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=buvanipai&repo=FitGuide&theme=gotham&hide_border=true" />
   </a>
 
-</div>
-
----
-
-### 📊 Github Stats
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=buvanipai&show_icons=true&theme=gotham&hide_border=true&count_private=true" height="160" alt="stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=buvanipai&layout=compact&theme=gotham&hide_border=true&langs_count=6" height="160" alt="languages" />
 </div>
