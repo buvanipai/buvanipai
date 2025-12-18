@@ -41,7 +41,7 @@ const Home: React.FC = () => {
           {/* Mobile: Left aligned text inside centered container to fix spacing rivers */}
           <div className="border-l-2 border-stone-200 pl-4 md:pl-6 py-1 max-w-lg mx-auto md:mx-0 text-left">
              <p className="text-sm md:text-base text-subtle/90 font-mono leading-relaxed text-pretty md:text-left">
-               Uncovering the 'why' behind intelligent systems. I specialize in Agentic workflows, LLMs, and Computer Vision, bridging the gap between theoretical models and production systems.
+               The world is a scaling problem and I build the intelligence to solve it. Specializing in agentic AI, computer vision, and deep learning systems that go from research to production.
              </p>
           </div>
 
