@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
-import useClickSound from './ClickSound';
+import ClickSound from './ClickSound'; // <--- We import the Component now
 import { SOCIALS } from '../constants';
 
 const Layout: React.FC = () => {
-  const playClick = useClickSound();
+  // NOTE: We deleted "const playClick = useClickSound()"
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -18,8 +18,12 @@ const Layout: React.FC = () => {
     `text-lg font-heading font-bold py-3 border-b border-stone-100 ${isActive ? 'text-ink pl-2 border-l-4 border-l-ink bg-stone-50' : 'text-subtle'}`;
 
   return (
-    <div className="min-h-screen bg-surface text-ink flex flex-col items-center py-2 md:py-4 overflow-x-hidden" onClick={playClick}>
+    // NOTE: We removed "onClick={playClick}" from this div
+    <div className="min-h-screen bg-surface text-ink flex flex-col items-center py-2 md:py-4 overflow-x-hidden">
       
+      {/* This invisible component handles the sound for the whole app */}
+      <ClickSound />
+
       {/* Main Sheet Container */}
       <div className="w-full max-w-6xl px-4 md:px-0 flex-grow flex flex-col">
         <div className="bg-paper shadow-sheet border border-white/50 rounded-sm flex flex-col min-h-[90vh] relative">
@@ -27,7 +31,7 @@ const Layout: React.FC = () => {
           {/* Header */}
           <header className="px-6 py-6 md:px-12 flex justify-between items-center border-b border-border/50 bg-paper sticky top-0 z-30">
             <NavLink to="/" className="group" onClick={closeMenu}>
-               {/* Updated Logo: Serif Initials with Geometric Line */}
+               {/* Logo */}
                <div className="flex items-center gap-1">
                  <span className="text-3xl font-heading font-bold text-ink">b</span>
                  <span className="h-6 w-[2px] bg-ink rotate-12 mx-1 opacity-40 group-hover:rotate-0 transition-transform duration-300"></span>
@@ -51,7 +55,6 @@ const Layout: React.FC = () => {
           </header>
 
           {/* Mobile Menu - Slide Drawer */}
-          
           {/* Backdrop */}
           <div 
             className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300 md:hidden ${
@@ -98,7 +101,7 @@ const Layout: React.FC = () => {
              </div>
           </div>
 
-          {/* Main Content - Natural Flow */}
+          {/* Main Content */}
           <main className="flex-grow px-6 md:px-12 py-6 animate-fadeIn">
                <Outlet />
           </main>
