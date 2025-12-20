@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Download, Linkedin, Briefcase, GraduationCap, Mail, Phone, MapPin, FileText } from 'lucide-react';
+import { ArrowRight, Linkedin, Briefcase, GraduationCap, Mail, Phone, MapPin, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PROJECTS, SOCIALS, EXPERIENCE, EDUCATION } from '../constants';
 

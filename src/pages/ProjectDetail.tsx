@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { PROJECTS } from '../constants';
-import { ArrowLeft, Paperclip, Github, LucideExternalLink, LinkIcon } from 'lucide-react';
+import { ArrowLeft, Paperclip, Github, LinkIcon } from 'lucide-react';
 
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();

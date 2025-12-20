@@ -1,4 +1,4 @@
-export type SkillCategory = 'Languages' | 'Frameworks & Libraries' | 'Tools & Platforms' | 'AI & Core Concepts';
+export type SkillCategory = 'Languages' | 'Frameworks & Libraries' | 'Tools & Platforms' | 'AI & Core Concepts' | 'Programming Languages';
 
 export interface TechItem {
   name: string;

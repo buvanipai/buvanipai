@@ -1,4 +1,4 @@
-import { Project, Experience, Education, BlogPost, Award, BucketItem, OfflineGalleryItem } from './types';
+import { Project, Experience, Education, BlogPost, Award, OfflineGalleryItem } from './types';
 
 export const SOCIALS = {
   email: "buvanipai@gmail.com",
