@@ -1,34 +1,42 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-const useClickSound = () => {
-  const playClick = useCallback(() => {
-    try {
-      // Create a short oscillator beep that sounds like a click
-      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-      if (!AudioContext) return;
+const ClickSound: React.FC = () => {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // 1. Load the file
+    // Make sure 'click.mp3' is in your 'public/sounds/' folder
+    audioRef.current = new Audio('/sounds/click.mp3');
+    audioRef.current.volume = 0.6; // Adjust volume (0.0 to 1.0)
+    
+    // Preload it so it's ready instantly
+    audioRef.current.preload = 'auto';
+
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
       
-      const ctx = new AudioContext();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
+      // 2. Check if we clicked something interactive
+      // (Links, Buttons, or elements acting as buttons)
+      const isInteractive = target.closest('a, button, input[type="submit"], [role="button"]');
 
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(800, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.05);
-      
-      gain.gain.setValueAtTime(0.05, ctx.currentTime); // Very quiet
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.03);
+      if (isInteractive && audioRef.current) {
+        // Reset time to 0 to allow rapid-fire clicking
+        audioRef.current.currentTime = 0.22;
+        
+        // Play sound
+        // We use .catch() to ignore errors if the browser blocks auto-play (rare on clicks)
+        audioRef.current.play().catch(() => {});
+      }
+    };
 
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      osc.start();
-      osc.stop(ctx.currentTime + 0.05);
-    } catch (e) {
-      console.error("Audio play failed", e);
-    }
+    window.addEventListener('click', handleGlobalClick);
+    
+    return () => {
+      window.removeEventListener('click', handleGlobalClick);
+    };
   }, []);
 
-  return playClick;
+  return null;
 };
 
-export default useClickSound;
+export default ClickSound;

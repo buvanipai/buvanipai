@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Download, Linkedin, Briefcase, GraduationCap, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, Download, Linkedin, Briefcase, GraduationCap, Mail, Phone, MapPin, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PROJECTS, SOCIALS, EXPERIENCE, EDUCATION } from '../constants';
 
@@ -49,10 +49,12 @@ const Home: React.FC = () => {
           <div className="space-y-6">
             <div className="pt-2 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                <a 
-                href="/resume.pdf" 
+                href="/Buvani_Pai_Resume.pdf#view=FitH"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-ink text-white px-8 py-4 text-xs font-bold uppercase tracking-widest shadow-lg hover:-translate-y-1 transition-transform flex items-center justify-center gap-3 rounded-sm"
               >
-                <Download size={16} /> Download Resume
+                <FileText size={16} /> View Resume
               </a>
               
               <a 
@@ -82,15 +84,15 @@ const Home: React.FC = () => {
         {/* Right Partition: Image - Centered & Floating */}
         <div className="w-full md:w-5/12 flex justify-center items-center py-6 md:py-0 relative">
            
-           {/* Subtle background blob to separate from white/paper background */}
-           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-64 md:h-64 bg-white/60 rounded-full blur-3xl -z-10"></div>
+           {/* Subtle background blob - Increased size slightly */}
+           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 md:w-80 md:h-80 bg-white/60 rounded-full blur-3xl -z-10"></div>
            
-           <div className="relative animate-float z-10">
-              {/* Memoji with transparent background styling */}
+           <div className="relative animate-float z-10"
+                style={{ animationDuration: '3s' }}>
               <img 
                 src="/images/memoji.png" 
                 alt="Buvani Memoji" 
-                className="w-56 h-56 md:w-[26rem] md:h-[26rem] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-300" 
+                className="w-64 h-64 md:w-[30rem] md:h-[30rem] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-300" 
               />
            </div>
         </div>
@@ -134,9 +136,9 @@ const Home: React.FC = () => {
                                 <div className="bg-white p-5 md:p-6 shadow-card border border-stone-200 hover:shadow-card-hover transition-all">
                                     <div className="flex gap-4 items-start">
                                         {/* Logo Column */}
-                                        <div className="flex-shrink-0 w-12 h-12 border border-stone-100 bg-stone-50 flex items-center justify-center p-1">
+                                        <div className="flex-shrink-0 w-12 h-12 border border-stone-200 bg-[#F5F5F7] flex items-center justify-center p-1">
                                             {exp.logo ? (
-                                                <img src={exp.logo} alt={exp.company} className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
+                                                <img src={exp.logo} alt={exp.company} className="max-w-full max-h-full object-contain transition-all opacity-80 group-hover:opacity-100" />
                                             ) : (
                                                 <Briefcase size={20} className="text-stone-300"/>
                                             )}
@@ -171,7 +173,7 @@ const Home: React.FC = () => {
                    {/* Header */}
                    <div className="relative pl-12 mb-8 flex items-center">
                        <span className="absolute left-0 top-0 bg-paper border border-ink p-1.5 z-10">
-                           <GraduationCap size={16} className="text-ink" />
+                           <GraduationCap size={16} className="text-ink"/>
                        </span>
                        <h3 className="font-heading font-bold text-lg text-ink ml-1 pt-1">Education</h3>
                    </div>
@@ -185,9 +187,9 @@ const Home: React.FC = () => {
                                 <div className="bg-stone-50 p-5 md:p-6 border border-stone-200 shadow-sm hover:shadow-md transition-all">
                                     <div className="flex gap-4 items-start">
                                         {/* Logo Column */}
-                                        <div className="flex-shrink-0 w-12 h-12 border border-stone-200 bg-white flex items-center justify-center p-1">
+                                        <div className="flex-shrink-0 w-12 h-12 border border-stone-200 bg-[#F5F5F7] flex items-center justify-center p-1">
                                             {edu.logo ? (
-                                                <img src={edu.logo} alt={edu.school} className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300" />
+                                                <img src={edu.logo} alt={edu.school} className="max-w-full max-h-full object-contain transition-all opacity-80 group-hover:opacity-100" />
                                             ) : (
                                                 <GraduationCap size={20} className="text-stone-300"/>
                                             )}

@@ -20,6 +20,8 @@ export interface Project {
   images?: string[]; // Optional images
   role?: string; // Optional: For work experience projects
   companyLogo?: string; // Optional: URL for company logo
+  githubUrl?: string; // New field
+  liveUrl?: string;   // New field
 }
 
 export interface Experience {
@@ -72,4 +74,9 @@ export interface OfflineGalleryItem {
   rotation: string; // Tailwind class like 'rotate-1'
   position: string; // Tailwind absolute position classes (e.g., 'top-10 left-4')
   size: string;     // Tailwind width class (e.g., 'w-48')
+}
+
+export interface FunFact {
+  emoji: string;
+  text: string;
 }

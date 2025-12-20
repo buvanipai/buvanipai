@@ -52,8 +52,8 @@ const Experience: React.FC = () => {
                                     
                                     <div className="flex flex-col sm:flex-row gap-4 items-start mb-6 mt-2">
                                         {exp.logo && (
-                                            <div className="flex-shrink-0 w-14 h-14 border border-stone-100 bg-stone-50 flex items-center justify-center p-1 shadow-sm">
-                                                <img src={exp.logo} alt={exp.company} className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500" />
+                                            <div className="flex-shrink-0 w-14 h-14 border border-stone-100 bg-[#F5F5F7] flex items-center justify-center p-1 shadow-sm">
+                                                <img src={exp.logo} alt={exp.company} className="max-w-full max-h-full object-contain transition-all opacity-80 group-hover:opacity-100" />
                                             </div>
                                         )}
                                         <div>
@@ -122,9 +122,9 @@ const Experience: React.FC = () => {
                  <div className="mt-6 space-y-6 flex-grow">
                      {currentAwards.map((award, idx) => (
                          <div key={idx} className="border-b border-dashed border-stone-200 pb-5 last:border-0 last:pb-0 flex gap-4 animate-fadeIn">
-                             <div className="flex-shrink-0 w-10 h-10 bg-stone-50 border border-stone-100 flex items-center justify-center p-1">
+                             <div className="flex-shrink-0 w-10 h-10 bg-stone-50 border border-stone-100 bg-[#F5F5F7] flex items-center justify-center p-1">
                                 {award.logo ? (
-                                    <img src={award.logo} alt={award.issuer} className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all" />
+                                    <img src={award.logo} alt={award.issuer} className="max-w-full max-h-full object-contain transition-all opacity-80 group-hover:opacity-100" />
                                 ) : (
                                     <Award size={16} className="text-yellow-600" />
                                 )}

@@ -18,7 +18,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto pt-4 space-y-12 animate-fadeIn">
+    <div className="max-w-5xl mx-auto pt-4 space-y-12 animate-fadeIn">
       <div className="border-b-2 border-ink pb-4 flex justify-between items-end">
         <h2 className="text-4xl font-heading font-bold text-ink">Project Directory</h2>
         <span className="text-xs font-mono text-subtle hidden sm:block">
@@ -49,11 +49,11 @@ const Projects: React.FC = () => {
                     
                     {/* Logo (Desktop/Tablet) */}
                     {project.companyLogo && (
-                       <div className="hidden sm:flex flex-shrink-0 w-14 h-14 border border-stone-100 bg-stone-50 items-center justify-center p-2 shadow-sm mt-1">
+                       <div className="hidden sm:flex flex-shrink-0 w-14 h-14 bg-[#F5F5F7] border border-stone-100 bg-stone-50 items-center justify-center p-2 shadow-sm mt-1">
                            <img 
                              src={project.companyLogo} 
                              alt={`${project.title} Logo`} 
-                             className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100" 
+                             className="max-w-full max-h-full object-contain transition-all opacity-80 group-hover:opacity-100" 
                            />
                        </div>
                     )}

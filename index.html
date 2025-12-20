@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
+        darkMode: 'media',
         theme: {
           extend: {
             fontFamily: {
@@ -19,12 +20,28 @@
               cursive: ['"Caveat"', 'cursive'],
             },
             colors: {
-              surface: '#EAE8E3', // Desk/background color
-              paper: '#FAF9F6',   // Main sheet (Off-white)
-              card: '#FFFFFF',    // Top cards (Pure white)
-              ink: '#1A1A1A',     // Dark text
-              subtle: '#5A5A5A',  // Secondary text
-              border: '#D1D1D1',  // Line color
+              surface: 'rgb(var(--c-surface) / <alpha-value>)', 
+              paper: 'rgb(var(--c-paper) / <alpha-value>)',
+              card: 'rgb(var(--c-card) / <alpha-value>)',
+              ink: 'rgb(var(--c-ink) / <alpha-value>)',
+              subtle: 'rgb(var(--c-subtle) / <alpha-value>)',
+              border: 'rgb(var(--c-border) / <alpha-value>)',
+              
+              // Custom Semantic Highlights
+              note: 'rgb(var(--c-note) / <alpha-value>)',
+              'note-border': 'rgb(var(--c-note-border) / <alpha-value>)',
+              'note-blue': 'rgb(var(--c-note-blue) / <alpha-value>)',
+              'note-blue-border': 'rgb(var(--c-note-blue-border) / <alpha-value>)',
+
+              // Overrides for Dark Mode Compatibility
+              white: 'rgb(var(--c-card) / <alpha-value>)', 
+              stone: {
+                50: 'rgb(var(--c-stone-50) / <alpha-value>)',
+                100: 'rgb(var(--c-stone-100) / <alpha-value>)',
+                200: 'rgb(var(--c-stone-200) / <alpha-value>)',
+                300: 'rgb(var(--c-stone-300) / <alpha-value>)',
+                400: 'rgb(var(--c-stone-400) / <alpha-value>)',
+              }
             },
             boxShadow: {
               'sheet': '0 1px 3px rgba(0,0,0,0.05), 0 20px 50px -10px rgba(0,0,0,0.1)',
@@ -50,33 +67,70 @@
       }
     </script>
     <style>
+      :root {
+        /* Light Mode */
+        --c-surface: 234 232 227;  
+        --c-paper: 250 249 246;    
+        --c-card: 255 255 255;     
+        --c-ink: 26 26 26;         
+        --c-subtle: 90 90 90;      
+        --c-border: 209 209 209;   
+        --c-stone-50: 250 250 249;
+        --c-stone-100: 245 245 244;
+        --c-stone-200: 231 229 228;
+        --c-stone-300: 214 211 209;
+        --c-stone-400: 168 162 158;
+        --c-note: 254 249 195;     
+        --c-note-border: 234 179 8; 
+        --c-note-blue: 224 242 254; 
+        --c-note-blue-border: 56 189 248;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          /* Dark Mode */
+          --c-surface: 18 18 18;     
+          --c-paper: 24 24 27;       
+          --c-card: 32 32 35;        
+          --c-ink: 228 228 231;      
+          --c-subtle: 161 161 170;   
+          --c-border: 63 63 70;      
+          --c-stone-50: 39 39 42; 
+          --c-stone-100: 63 63 70; 
+          --c-stone-200: 82 82 91; 
+          --c-stone-300: 113 113 122;
+          --c-stone-400: 161 161 170;
+          --c-note: 45 42 12;        /* Deep amber brown for dark mode note */
+          --c-note-border: 113 63 18; 
+          --c-note-blue: 23 37 84;   
+          --c-note-blue-border: 30 58 138;
+        }
+      }
+
       body {
-        background-color: #EAE8E3;
-        color: #1A1A1A;
+        background-color: rgb(var(--c-surface));
+        color: rgb(var(--c-ink));
         font-family: "Courier Prime", monospace;
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
-      /* Smooth scrolling */
-      html {
-        scroll-behavior: smooth;
-      }
+      html { scroll-behavior: smooth; }
     </style>
-  <script type="importmap">
+<script type="importmap">
 {
   "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
     "vite": "https://esm.sh/vite@^7.3.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.11.0",
     "react/": "https://esm.sh/react@^19.2.3/",
     "react": "https://esm.sh/react@^19.2.3",
-    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
-    "react-router-dom": "https://esm.sh/react-router-dom@^7.10.1"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
-</body>
+  </body>
 </html>

@@ -100,7 +100,7 @@ const BlogDetail: React.FC = () => {
               )}
 
               {/* Reading Marker / Bookmark Visual */}
-              <div className="bg-[#E0F2FE] p-4 shadow-sm border border-blue-100 transform rotate-1 text-center">
+              <div className="bg-note-blue p-4 shadow-sm border border-note-blue-border/20 transform rotate-1 text-center">
                   <Bookmark className="mx-auto text-blue-400 mb-2" size={24} />
                   <p className="font-handwriting font-mono text-xs text-blue-900 italic">
                       "Knowledge increases by sharing, not by saving."

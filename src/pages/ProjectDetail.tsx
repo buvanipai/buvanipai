@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { PROJECTS } from '../constants';
-import { ArrowLeft, Paperclip, ImageIcon } from 'lucide-react';
+import { ArrowLeft, Paperclip, Github, LucideExternalLink, LinkIcon } from 'lucide-react';
 
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,7 +12,7 @@ const ProjectDetail: React.FC = () => {
   }
 
   return (
-    <article className="max-w-4xl mx-auto space-y-12 animate-fadeIn pt-4">
+    <article className="max-w-5xl mx-auto space-y-4 animate-fadeIn pt-4">
       
       {/* Back Navigation */}
       <Link to="/projects" className="inline-flex items-center gap-2 text-subtle hover:text-ink font-bold text-xs uppercase tracking-widest mb-4 transition-colors">
@@ -21,25 +21,26 @@ const ProjectDetail: React.FC = () => {
 
       {/* Header */}
       <header className="space-y-6 pb-8 border-b-2 border-ink">
-        <div className="flex justify-between items-start">
-             <div className="flex items-center gap-2 text-xs font-mono bg-stone-100 inline-block px-2 py-1 border border-stone-200">
-                <span>CASE_FILE_ID: {project.id.toUpperCase()}</span>
-            </div>
+        
+        {/* Title and Logo Row */}
+        <div className="flex justify-between items-center gap-6">
+            <h1 className="text-3xl md:text-5xl font-heading font-bold text-ink leading-tight">
+              {project.title}
+            </h1>
             
-            {/* Optional Company Logo for Work Ex Projects */}
             {project.companyLogo && (
-                <div className="w-12 h-12 md:w-16 md:h-16 p-1 bg-white border border-stone-200 shadow-sm flex items-center justify-center">
-                    <img src={project.companyLogo} alt="Company Logo" className="max-w-full max-h-full object-contain opacity-90 grayscale hover:grayscale-0 transition-all" />
+                <div className="shrink-0 w-12 h-12 md:w-16 md:h-16 p-1 bg-[#F5F5F7] border border-stone-200 shadow-sm flex items-center justify-center">
+                    <img 
+                        src={project.companyLogo} 
+                        alt="Company Logo" 
+                        className="max-w-full max-h-full object-contain opacity-90 transition-all" 
+                    />
                 </div>
             )}
         </div>
-
-        <h1 className="text-3xl md:text-5xl font-heading font-bold text-ink leading-tight">
-          {project.title}
-        </h1>
         
+        {/* Meta Tags */}
         <div className="flex flex-wrap gap-8 text-xs uppercase tracking-widest pt-4">
-           {/* Role Section (Only for Work Ex) */}
            {project.role && (
               <div className="flex flex-col gap-1">
                  <span className="font-bold text-subtle">Role</span>
@@ -63,23 +64,56 @@ const ProjectDetail: React.FC = () => {
         </div>
       </header>
 
-      {/* Main Case Study Content */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
           
-          {/* Left Column: Main Narrative */}
+          {/* --- Left Column: Narrative --- */}
           <div className="md:col-span-2 space-y-10">
               
               {/* Overview */}
               <section className="bg-white p-8 shadow-card border border-stone-200">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-subtle mb-4 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-ink rounded-full"></div> Overview
-                </h3>
+                {/* Header Row: Title on Left, Icons on Right */}
+                <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-xs font-bold uppercase tracking-widest text-subtle flex items-center gap-2">
+                        <div className="w-2 h-2 bg-ink rounded-full"></div> Overview
+                    </h3>
+
+                    {/* Icon Links */}
+                    {(project.githubUrl || project.liveUrl) && (
+                        <div className="flex gap-3">
+                            {project.githubUrl && (
+                                <a 
+                                    href={project.githubUrl} 
+                                    target="_blank" 
+                                    rel="noreferrer" 
+                                    title="View Source Code"
+                                    className="p-2 bg-stone-50 border border-stone-200 text-ink hover:bg-ink hover:text-white transition-all rounded-sm"
+                                >
+                                    <Github size={12} />
+                                </a>
+                            )}
+                            
+                            {project.liveUrl && (
+                                <a 
+                                    href={project.liveUrl} 
+                                    target="_blank" 
+                                    rel="noreferrer" 
+                                    title="View Live Demo"
+                                    className="p-2 bg-stone-50 border border-stone-200 text-ink hover:bg-ink hover:text-white transition-all rounded-sm"
+                                >
+                                    <LinkIcon size={12} />
+                                </a>
+                            )}
+                        </div>
+                    )}
+                </div>
+
                 <p className="font-mono text-sm leading-loose text-ink">
                     {project.overview}
                 </p>
               </section>
 
-              {/* Challenge & Approach */}
+              {/* Challenge & Process */}
               <section className="space-y-8">
                   <div>
                     <h3 className="text-lg font-heading font-bold text-ink mb-3 decoration-wavy underline decoration-stone-300">The Challenge</h3>
@@ -101,24 +135,27 @@ const ProjectDetail: React.FC = () => {
                   </div>
               </section>
 
-              {/* Results */}
-              <section className="bg-stone-50 p-6 border-l-4 border-ink">
+              {/* Key Results */}
+              <section className="bg-white p-6 border-l-4 border-ink">
                   <h3 className="text-lg font-heading font-bold text-ink mb-4">Key Results</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {project.results.map((result, idx) => (
-                          <div key={idx} className="bg-white p-4 shadow-sm border border-stone-200">
-                              <p className="font-mono text-sm text-ink">{result}</p>
-                          </div>
-                      ))}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {project.results.map((result, idx) => {
+                           const isLastAndOdd = idx === project.results.length - 1 && project.results.length % 2 !== 0;
+                           return (
+                              <div key={idx} className={`bg-white p-4 shadow-sm border border-stone-200 ${isLastAndOdd ? 'sm:col-span-2' : ''}`}>
+                                  <p className="font-mono text-sm text-ink">{result}</p>
+                              </div>
+                           );
+                      })}
                   </div>
               </section>
           </div>
 
-          {/* Right Column: Learnings (Sticky) */}
+          {/* --- Right Column: Learnings & Images --- */}
           <div className="space-y-8">
               
-              {/* Learnings Note */}
-              <div className="bg-[#FEF9C3] p-6 shadow-card transform -rotate-1 relative sticky top-8">
+              {/* Field Notes (Sticky Note) */}
+              <div className="bg-note p-6 shadow-card transform -rotate-1 relative">
                    <Paperclip className="absolute -top-3 -right-3 text-stone-400" size={32} />
                    <h3 className="font-heading font-bold text-ink mb-3 text-lg">Field Notes & Learnings</h3>
                    <ul className="space-y-3">
@@ -130,43 +167,22 @@ const ProjectDetail: React.FC = () => {
                    </ul>
               </div>
 
-          </div>
-
-      </div>
-
-      {/* Visual Evidence - Mosaic Gallery */}
-      {project.images && project.images.length > 0 && (
-         <section className="pt-12 border-t border-dashed border-stone-300">
-             <div className="flex items-center gap-3 mb-8">
-                 <div className="bg-ink text-white p-1.5">
-                     <ImageIcon size={18} />
+               {/* Clean, Raw Images */}
+              {project.images && project.images.length > 0 && (
+                 <div className="space-y-8 pt-4">
+                     {project.images.map((img, idx) => (
+                        <img
+                            key={idx}
+                            src={img}
+                            alt={`Project visual ${idx + 1}`}
+                            className="w-full h-auto border border-stone-200"
+                        />
+                     ))}
                  </div>
-                 <h3 className="text-xl font-heading font-bold text-ink">Visual Evidence</h3>
-                 <span className="h-px flex-grow bg-stone-300 ml-4"></span>
-                 <span className="text-xs font-mono text-subtle">{project.images.length} FILES</span>
-             </div>
+              )}
 
-             {/* Masonry/Mosaic Layout using CSS Columns */}
-             <div className="columns-1 sm:columns-2 gap-6 space-y-6">
-                 {project.images.map((img, idx) => (
-                     <div key={idx} className="break-inside-avoid relative group bg-white p-3 border border-stone-200 shadow-card hover:shadow-card-hover transition-all duration-300">
-                         <div className="overflow-hidden bg-stone-100">
-                             <img 
-                                src={img} 
-                                alt={`Project Screenshot ${idx + 1}`} 
-                                className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" 
-                             />
-                         </div>
-                         <div className="mt-3 flex justify-between items-center">
-                             <span className="font-mono text-[10px] text-subtle uppercase">Figure {idx + 1}</span>
-                             <span className="font-mono text-[10px] text-subtle opacity-50">.JPG</span>
-                         </div>
-                     </div>
-                 ))}
-             </div>
-         </section>
-      )}
-
+          </div>
+      </div>
     </article>
   );
 };
