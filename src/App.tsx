@@ -1,5 +1,5 @@
-import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -7,11 +7,39 @@ import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import Contact from './pages/Contact';
-import ScrollToTop from './components/ScrollToTop';
+import LoadingScreen from './components/LoadingScreen'; // <--- NEW IMPORT
 
-const App: React.FC = () => {
+// ScrollToTop Component to reset scroll on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Show loading screen for at least 1.5 seconds so it feels smooth
+    // This also gives time for images/fonts to start loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Show Loading Screen if state is true
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <HashRouter>
+    <Router>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -23,8 +51,8 @@ const App: React.FC = () => {
           <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
-    </HashRouter>
+    </Router>
   );
-};
+}
 
 export default App;
