@@ -8,11 +8,39 @@ import Experience from './pages/Experience';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
 import Contact from './pages/Contact';
-import ScrollToTop from './components/ScrollToTop';
+import LoadingScreen from './components/LoadingScreen'; // <--- NEW IMPORT
 
-const App: React.FC = () => {
+// ScrollToTop Component to reset scroll on route change
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Show loading screen for at least 1.5 seconds so it feels smooth
+    // This also gives time for images/fonts to start loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Show Loading Screen if state is true
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <HashRouter>
+    <Router>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -27,6 +55,6 @@ const App: React.FC = () => {
       <Analytics />
     </HashRouter>
   );
-};
+}
 
 export default App;
